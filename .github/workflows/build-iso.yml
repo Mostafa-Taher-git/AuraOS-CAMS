@@ -27,24 +27,23 @@ jobs:
           pacman -S --noconfirm archiso dosfstools e2fsprogs
 
       - name: Check disk space
-        run: |
-          df -h
+        run: df -h
 
       - name: Build ISO
         run: |
           set -eux
-          mkarchiso -v -w /tmp/auraos-build ./profile
+          mkarchiso -v -w /tmp/auraos-build -o /tmp/auraos-out ./profile
           echo "=== Build complete ==="
-          ls -lah /tmp/auraos-build/
-          find /tmp/auraos-build -name "*.iso" -type f
+          ls -lah /tmp/auraos-out/
 
       - name: Locate and copy ISO
         run: |
           set -eux
-          ISO_PATH=$(find /tmp/auraos-build -name "*.iso" -type f | head -n1)
+          ISO_PATH=$(find /tmp/auraos-out -name "*.iso" -type f | head -n1)
           if [ -z "$ISO_PATH" ]; then
-            echo "ERROR: No ISO found"
-            find /tmp/auraos-build -type f | head -50
+            echo "ERROR: No ISO found in /tmp/auraos-out"
+            find /tmp/auraos-build -name "*.iso" -type f 2>/dev/null || true
+            find . -name "*.iso" -type f 2>/dev/null || true
             exit 1
           fi
           echo "Found: $ISO_PATH"
