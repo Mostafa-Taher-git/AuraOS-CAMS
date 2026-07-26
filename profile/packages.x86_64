@@ -1,4 +1,4 @@
-# --- Core System (mkarchiso installs base implicitly, don't list base/base-devel) ---
+# --- Core System ---
 linux
 linux-headers
 linux-firmware
@@ -10,7 +10,6 @@ systemd
 systemd-sysvcompat
 
 # --- Boot ---
-systemd-boot
 efibootmgr
 syslinux
 
@@ -49,7 +48,6 @@ vulkan-radeon
 xf86-video-amdgpu
 xf86-video-ati
 xf86-video-nouveau
-xf86-video-vmware
 wayland
 wayland-protocols
 xorg-xwayland
