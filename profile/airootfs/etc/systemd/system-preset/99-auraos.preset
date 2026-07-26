@@ -1,3 +1,4 @@
 enable NetworkManager.service
 enable bluetooth.service
 enable seatd.service
+enable greetd.service
