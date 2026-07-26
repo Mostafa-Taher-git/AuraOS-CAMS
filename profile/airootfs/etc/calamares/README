@@ -1,0 +1,4 @@
+# Calamares Installer Configuration
+
+Calamares is pre-installed. Default settings will be added in a future update.
+For now, run 'sudo calamares' from the terminal to launch the installer.
