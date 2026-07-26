@@ -1,6 +1,33 @@
 # --- Base System ---
-base
-base-devel
+bash
+bzip2
+coreutils
+curl
+file
+filesystem
+findutils
+gawk
+gcc-libs
+gettext
+glibc
+grep
+gzip
+iproute2
+iputils
+less
+licenses
+pacman
+pciutils
+procps-ng
+psmisc
+sed
+shadow
+systemd
+systemd-sysvcompat
+tar
+texinfo
+util-linux
+which
 linux
 linux-headers
 linux-firmware
@@ -8,8 +35,7 @@ intel-ucode
 amd-ucode
 mkinitcpio
 mkinitcpio-archiso
-systemd
-systemd-sysvcompat
+base-devel
 
 # --- Boot ---
 systemd-boot
@@ -105,12 +131,9 @@ pacman-contrib
 man-db
 man-pages
 texinfo
-which
 wget
-curl
 bind
 usbutils
-pciutils
 jq
 fzf
 ripgrep
