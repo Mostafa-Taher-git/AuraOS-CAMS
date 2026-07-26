@@ -1,0 +1,136 @@
+# --- Base System ---
+base
+base-devel
+linux
+linux-headers
+linux-firmware
+intel-ucode
+amd-ucode
+mkinitcpio
+mkinitcpio-archiso
+systemd
+systemd-sysvcompat
+
+# --- Boot ---
+systemd-boot
+efibootmgr
+syslinux
+
+# --- Filesystem ---
+btrfs-progs
+dosfstools
+e2fsprogs
+ntfs-3g
+exfatprogs
+xfsprogs
+
+# --- Networking ---
+networkmanager
+iwd
+dhcpcd
+openresolv
+wireless_tools
+wpa_supplicant
+bluez
+bluez-utils
+
+# --- Audio ---
+pipewire
+pipewire-pulse
+pipewire-alsa
+pipewire-jack
+wireplumber
+alsa-utils
+alsa-plugins
+alsa-lib
+
+# --- Graphics / Wayland ---
+mesa
+vulkan-intel
+vulkan-radeon
+xf86-video-amdgpu
+xf86-video-ati
+xf86-video-nouveau
+xf86-video-vmware
+wayland
+wayland-protocols
+xorg-xwayland
+libdrm
+libglvnd
+
+# --- Desktop: Hyprland ---
+hyprland
+hyprpaper
+hyprcursor
+hyprutils
+hyprlang
+xdg-desktop-portal-hyprland
+xdg-desktop-portal-gtk
+xdg-user-dirs
+xdg-utils
+polkit
+seatd
+
+# --- Display Manager ---
+greetd
+greetd-tuigreet
+
+# --- Terminal ---
+kitty
+foot
+
+# --- Launcher / Bar / Notifications ---
+wofi
+waybar
+mako
+network-manager-applet
+blueman
+polkit-gnome
+
+# --- Fonts ---
+ttf-dejavu
+ttf-liberation
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+ttf-font-awesome
+
+# --- Tools ---
+git
+vim
+nano
+htop
+fastfetch
+pacman-contrib
+man-db
+man-pages
+texinfo
+which
+wget
+curl
+bind
+usbutils
+pciutils
+jq
+fzf
+ripgrep
+fd
+eza
+bat
+p7zip
+zip
+unzip
+
+# --- File Manager ---
+nautilus
+
+# --- AGS / Astal dependencies (for Phase 2) ---
+gjs
+gtk4
+gtk4-layer-shell
+gobject-introspection
+
+# --- Utilities ---
+grim
+slurp
+wl-clipboard
