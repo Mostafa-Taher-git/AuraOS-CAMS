@@ -1,0 +1,47 @@
+name: Build AuraOS ISO
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:base-devel
+      options: --privileged
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Prepare Arch environment
+        run: |
+          pacman-key --init
+          pacman-key --populate archlinux
+          pacman -Sy --noconfirm archiso dosfstools e2fsprogs
+
+      - name: Build ISO
+        run: |
+          mkarchiso -v -w /tmp/auraos-build ./profile
+
+      - name: Locate ISO
+        run: |
+          ISO_PATH=$(find /tmp/auraos-build -name "*.iso" -type f | head -n1)
+          if [ -z "$ISO_PATH" ]; then
+            echo "ISO not found in /tmp/auraos-build"
+            ls -laR /tmp/auraos-build || true
+            exit 1
+          fi
+          echo "ISO_PATH=$ISO_PATH" >> $GITHUB_ENV
+          cp "$ISO_PATH" /tmp/auraos.iso
+
+      - name: Upload ISO artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: auraos-iso
+          path: /tmp/auraos.iso
+          retention-days: 30
