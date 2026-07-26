@@ -20,24 +20,32 @@ jobs:
 
       - name: Prepare Arch environment
         run: |
+          set -e
           pacman-key --init
           pacman-key --populate archlinux
+          # Update keyring first to avoid signature failures
+          pacman -Sy --noconfirm archlinux-keyring
           pacman -Sy --noconfirm archiso dosfstools e2fsprogs
 
       - name: Build ISO
         run: |
+          set -e
           mkarchiso -v -w /tmp/auraos-build ./profile
+          ls -lah /tmp/auraos-build/
+          find /tmp/auraos-build -name "*.iso" -type f
 
-      - name: Locate ISO
+      - name: Locate and copy ISO
         run: |
+          set -e
           ISO_PATH=$(find /tmp/auraos-build -name "*.iso" -type f | head -n1)
           if [ -z "$ISO_PATH" ]; then
-            echo "ISO not found in /tmp/auraos-build"
-            ls -laR /tmp/auraos-build || true
+            echo "ERROR: No ISO found in /tmp/auraos-build"
+            find /tmp/auraos-build -type f | head -50
             exit 1
           fi
-          echo "ISO_PATH=$ISO_PATH" >> $GITHUB_ENV
+          echo "Found ISO: $ISO_PATH"
           cp "$ISO_PATH" /tmp/auraos.iso
+          ls -lah /tmp/auraos.iso
 
       - name: Upload ISO artifact
         uses: actions/upload-artifact@v4
