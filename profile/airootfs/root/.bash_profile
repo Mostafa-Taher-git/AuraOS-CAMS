@@ -4,11 +4,11 @@
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
+# If root on TTY1, run firstboot then switch to greetd
 if [ -z "${DISPLAY}" ] && [ "$(tty)" = "/dev/tty1" ]; then
     if [ ! -f /var/lib/auraos/firstboot-done ]; then
         mkdir -p /var/lib/auraos
         /usr/local/bin/auraos-firstboot
-        touch /var/lib/auraos/firstboot-done
     fi
-    exec Hyprland
+    # On live ISO, greetd handles login. On installed system, user logs in normally.
 fi
